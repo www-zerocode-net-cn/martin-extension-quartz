@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>martin-extension</artifactId>
+        <groupId>com.java2e</groupId>
+        <version>1.0.8</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <artifactId>martin-extension-quartz</artifactId>
+    <version>1.0.8</version>
+    <packaging>jar</packaging>
+
+    <description>
+        该模块为 分布式定时调度模块，基于 quartz 实现。
+        quartz 官网地址：http://www.quartz-scheduler.org/
+    </description>
+
+    <dependencies>
+        <!--quartz有可能需要调用其余服务，需要引入martin通用服务包-->
+        <dependency>
+            <groupId>com.java2e</groupId>
+            <artifactId>martin-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

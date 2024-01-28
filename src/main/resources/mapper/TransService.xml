@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.java2e.martin.extension.quartz.mapper.QuartzMapper">
+
+    <select id="getPage" resultType="java.util.Map">
+        SELECT
+        qjd.JOB_NAME AS jobName,
+        qjd.JOB_GROUP AS groupName,
+        qjd.DESCRIPTION AS jobDescription,
+        qct.CRON_EXPRESSION AS cronExpression,
+        qjd.JOB_CLASS_NAME AS jobClass
+        FROM
+        QRTZ_JOB_DETAILS qjd
+        INNER JOIN QRTZ_CRON_TRIGGERS qct ON qjd.JOB_NAME = qct.TRIGGER_NAME
+        AND qjd.JOB_GROUP = qct.TRIGGER_GROUP
+        <where>
+            <if test="map.jobName != null and map.jobName != ''">
+                AND qjd.JOB_NAME = #{map.jobName}
+            </if>
+            <if test="map.groupName != null and map.groupName != ''">
+                AND qjd.JOB_GROUP = #{map.groupName}
+            </if>
+        </where>
+    </select>
+</mapper>
